@@ -2,13 +2,14 @@ package handlers
 
 import (
 	"errors"
-	"go.uber.org/zap"
 	"net/http"
 	internalErrors "partiuFit/internal/errors"
 	"partiuFit/internal/middlewares"
 	"partiuFit/internal/requests"
 	"partiuFit/internal/store"
 	"partiuFit/internal/utils"
+
+	"go.uber.org/zap"
 )
 
 type UserHandlers struct {

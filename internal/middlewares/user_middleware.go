@@ -2,12 +2,13 @@ package middlewares
 
 import (
 	"context"
-	"go.uber.org/zap"
 	"net/http"
 	"partiuFit/internal/store"
 	"partiuFit/internal/tokens"
 	"partiuFit/internal/utils"
 	"strings"
+
+	"go.uber.org/zap"
 )
 
 type contextKey string

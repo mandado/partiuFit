@@ -2,18 +2,21 @@ package main
 
 import (
 	"fmt"
-	"github.com/joho/godotenv"
-	"go.uber.org/zap"
 	"net/http"
 	"os"
 	"partiuFit/internal/app"
 	"partiuFit/internal/routes"
 	"partiuFit/internal/utils"
 	"time"
+
+	"github.com/joho/godotenv"
+	"go.uber.org/zap"
 )
 
 func main() {
-	utils.MustIfError(godotenv.Load())
+	if os.Getenv("APP_ENV") != "production" {
+		utils.MustIfError(godotenv.Load())
+	}
 	port := utils.StringToInt(os.Getenv("PORT"))
 	logger := zap.Must(zap.NewProduction()).Sugar()
 

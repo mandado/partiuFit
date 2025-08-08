@@ -1,11 +1,12 @@
 package store
 
 import (
-	_ "github.com/jackc/pgx/v5/stdlib"
-	"github.com/stretchr/testify/assert"
 	testingUtils "partiuFit/internal/database/testing_utils"
 	"partiuFit/internal/utils"
 	"testing"
+
+	_ "github.com/jackc/pgx/v5/stdlib"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestWorkoutStore(t *testing.T) {

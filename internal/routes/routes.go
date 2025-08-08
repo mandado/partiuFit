@@ -1,9 +1,10 @@
 package routes
 
 import (
+	"partiuFit/internal/app"
+
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"partiuFit/internal/app"
 )
 
 func RegisterRoutes(app *app.Application) *chi.Mux {

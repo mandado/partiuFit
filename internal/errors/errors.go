@@ -3,6 +3,7 @@ package errors
 import (
 	"database/sql"
 	"errors"
+
 	"github.com/jackc/pgx/v5/pgconn"
 )
 

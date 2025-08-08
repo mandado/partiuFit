@@ -1,13 +1,14 @@
 package store
 
 import (
-	_ "github.com/jackc/pgx/v5/stdlib"
-	"github.com/stretchr/testify/assert"
 	testingUtils "partiuFit/internal/database/testing_utils"
 	"partiuFit/internal/tokens"
 	"partiuFit/internal/utils"
 	"testing"
 	"time"
+
+	_ "github.com/jackc/pgx/v5/stdlib"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestTokensStore(t *testing.T) {

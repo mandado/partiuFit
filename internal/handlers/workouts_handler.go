@@ -1,12 +1,13 @@
 package handlers
 
 import (
-	"go.uber.org/zap"
 	"net/http"
 	internalErrors "partiuFit/internal/errors"
 	"partiuFit/internal/middlewares"
 	"partiuFit/internal/store"
 	"partiuFit/internal/utils"
+
+	"go.uber.org/zap"
 )
 
 type WorkoutsHandlers struct {

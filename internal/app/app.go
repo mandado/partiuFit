@@ -2,13 +2,14 @@ package app
 
 import (
 	"database/sql"
-	"go.uber.org/zap"
 	"os"
 	"partiuFit/internal/database"
 	"partiuFit/internal/handlers"
 	"partiuFit/internal/middlewares"
 	"partiuFit/internal/store"
 	"partiuFit/migrations"
+
+	"go.uber.org/zap"
 )
 
 type Middlewares struct {

@@ -1,8 +1,9 @@
 package handlers
 
 import (
-	"go.uber.org/zap"
 	"partiuFit/internal/store"
+
+	"go.uber.org/zap"
 )
 
 type Handlers struct {

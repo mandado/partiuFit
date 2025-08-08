@@ -2,13 +2,14 @@ package store
 
 import (
 	"errors"
-	_ "github.com/jackc/pgx/v5/stdlib"
-	"github.com/stretchr/testify/assert"
 	testingUtils "partiuFit/internal/database/testing_utils"
 	internalErrors "partiuFit/internal/errors"
 	"partiuFit/internal/utils"
 	"partiuFit/internal/valueObjects"
 	"testing"
+
+	_ "github.com/jackc/pgx/v5/stdlib"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestUserStore(t *testing.T) {

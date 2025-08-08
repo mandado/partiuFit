@@ -2,13 +2,14 @@ package middlewares
 
 import (
 	"errors"
-	"github.com/go-chi/chi/v5/middleware"
-	"github.com/go-playground/validator/v10"
-	"go.uber.org/zap"
 	"net/http"
 	internalErrors "partiuFit/internal/errors"
 	"partiuFit/internal/utils"
 	"runtime/debug"
+
+	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-playground/validator/v10"
+	"go.uber.org/zap"
 )
 
 type ErrorHandlerMiddleware struct {

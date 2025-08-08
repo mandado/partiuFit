@@ -3,8 +3,9 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/pressly/goose/v3"
 	"io/fs"
+
+	"github.com/pressly/goose/v3"
 )
 
 func Open(dsn string) (*sql.DB, error) {

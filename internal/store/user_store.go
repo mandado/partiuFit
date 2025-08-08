@@ -3,11 +3,12 @@ package store
 import (
 	"crypto/sha256"
 	"database/sql"
-	_ "golang.org/x/crypto/bcrypt"
 	internalErrors "partiuFit/internal/errors"
 	"partiuFit/internal/requests"
 	"partiuFit/internal/valueObjects"
 	"time"
+
+	_ "golang.org/x/crypto/bcrypt"
 )
 
 var (

@@ -3,10 +3,11 @@ package testing_utils
 import (
 	"database/sql"
 	"fmt"
-	"github.com/joho/godotenv"
 	"os"
 	"partiuFit/internal/database"
 	"partiuFit/migrations"
+
+	"github.com/joho/godotenv"
 )
 
 func SetupTestDB() (*sql.DB, error) {

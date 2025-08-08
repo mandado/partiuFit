@@ -1,13 +1,14 @@
 package handlers
 
 import (
-	"go.uber.org/zap"
 	"net/http"
 	"partiuFit/internal/requests"
 	"partiuFit/internal/store"
 	"partiuFit/internal/tokens"
 	"partiuFit/internal/utils"
 	"time"
+
+	"go.uber.org/zap"
 )
 
 type TokensHandlers struct {

@@ -2,6 +2,7 @@ package valueObjects
 
 import (
 	"errors"
+
 	"golang.org/x/crypto/bcrypt"
 )
 

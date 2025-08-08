@@ -2,10 +2,11 @@ package utils
 
 import (
 	"encoding/json"
-	"github.com/go-chi/chi/v5"
 	"net/http"
 	internalErrors "partiuFit/internal/errors"
 	"strconv"
+
+	"github.com/go-chi/chi/v5"
 )
 
 type Envelope map[string]interface{}
