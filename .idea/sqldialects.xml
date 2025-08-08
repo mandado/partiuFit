@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/migrations/20250803005236_users.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/20250803005548_workouts.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/20250803005823_workout_entries.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/20250808011145_add_user_id_to_tables.sql" dialect="PostgreSQL" />
+    <file url="PROJECT" dialect="PostgreSQL" />
+  </component>
+</project>
