@@ -1,268 +1,268 @@
 # PartiuFit 💪
 
-A Go-based fitness tracking API that allows users to manage their workouts, track exercises, and maintain their fitness journey. Built with a clean architecture using Go, PostgreSQL, and Chi router.
+pUma API de acompanhamento fitness baseada em Go que permite aos usuários gerenciar seus treinos, rastrear exercícios e manter sua jornada fitness. Construída com arquitetura limpa usando Go, PostgreSQL e roteador Chi.
 
-## 🚀 Features
+## 🚀 Funcionalidades
 
-- **User Management**: User registration, authentication, and profile management
-- **Workout Tracking**: Create, read, update, and delete workouts
-- **Exercise Management**: Track individual exercises within workouts
-- **Authentication**: Token-based authentication system
-- **Database Migrations**: Automated database schema management
-- **Health Monitoring**: Built-in health check endpoints
-- **Hot Reload**: Development environment with auto-reload
+- **Gerenciamento de Usuários**: Registro de usuários, autenticação e gerenciamento de perfil
+- **Rastreamento de Treinos**: Criar, ler, atualizar e deletar treinos
+- **Gerenciamento de Exercícios**: Rastrear exercícios individuais dentro dos treinos
+- **Autenticação**: Sistema de autenticação baseado em token
+- **Migrações de Banco**: Gerenciamento automatizado de esquema do banco de dados
+- **Monitoramento de Saúde**: Endpoints de verificação de integridade integrados
+- **Hot Reload**: Ambiente de desenvolvimento com recarregamento automático
 
-## 🏗️ Project Architecture
+## 🏗️ Arquitetura do Projeto
 
 ```
 partiuFit/
 ├── internal/
-│   ├── app/                    # Application initialization and configuration
-│   ├── database/               # Database connection and utilities
-│   ├── handlers/               # HTTP request handlers
-│   ├── middlewares/            # HTTP middlewares (auth, error handling)
-│   ├── requests/               # Request validation structures
-│   ├── routes/                 # API route definitions
-│   ├── store/                  # Data access layer
-│   ├── tokens/                 # Token management
-│   ├── utils/                  # Utility functions
-│   └── valueObjects/           # Domain value objects
-├── migrations/                 # Database migration files
-├── config/                     # Configuration files
-├── bin/                        # Compiled binaries
-└── tmp/                        # Temporary files (development)
+│   ├── app/                    # Inicialização e configuração da aplicação
+│   ├── database/               # Conexão com banco de dados e utilitários
+│   ├── handlers/               # Manipuladores de requisições HTTP
+│   ├── middlewares/            # Middlewares HTTP (auth, tratamento de erros)
+│   ├── requests/               # Estruturas de validação de requisições
+│   ├── routes/                 # Definições de rotas da API
+│   ├── store/                  # Camada de acesso aos dados
+│   ├── tokens/                 # Gerenciamento de tokens
+│   ├── utils/                  # Funções utilitárias
+│   └── valueObjects/           # Objetos de valor do domínio
+├── migrations/                 # Arquivos de migração do banco
+├── config/                     # Arquivos de configuração
+├── bin/                        # Binários compilados
+└── tmp/                        # Arquivos temporários (desenvolvimento)
 ```
 
-## 🔧 Prerequisites
+## 🔧 Pré-requisitos
 
-Before running this application, ensure you have the following installed:
+Antes de executar esta aplicação, certifique-se de ter os seguintes itens instalados:
 
-### Required Dependencies
-- **Go 1.24+** - [Install Go](https://golang.org/doc/install)
-- **PostgreSQL 14+** - [Install PostgreSQL](https://www.postgresql.org/download/)
-- **Docker & Docker Compose** - [Install Docker](https://docs.docker.com/get-docker/)
+### Dependências Obrigatórias
+- **Go 1.24+** - [Instalar Go](https://golang.org/doc/install)
+- **PostgreSQL 14+** - [Instalar PostgreSQL](https://www.postgresql.org/download/)
+- **Docker & Docker Compose** - [Instalar Docker](https://docs.docker.com/get-docker/)
 
-### Development Tools (Recommended)
-- **Air** - Hot reloading for Go apps
+### Ferramentas de Desenvolvimento (Recomendadas)
+- **Air** - Hot reloading para aplicações Go
   ```bash
   go install github.com/air-verse/air@latest
   ```
-- **golangci-lint** - Go linter
+- **golangci-lint** - Linter para Go
   ```bash
   # Linux/macOS
   curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.55.2
   
-  # Or via Homebrew (macOS)
+  # Ou via Homebrew (macOS)
   brew install golangci-lint
   ```
-- **goimports** - Import formatting
+- **goimports** - Formatação de imports
   ```bash
   go install golang.org/x/tools/cmd/goimports@latest
   ```
 
-## ⚙️ Environment Setup
+## ⚙️ Configuração do Ambiente
 
-1. **Clone the repository**
+1. **Clone o repositório**
    ```bash
    git clone <repository-url>
    cd partiuFit
    ```
 
-2. **Environment Configuration**
+2. **Configuração do Ambiente**
    
-   Create a `.env` file in the root directory:
+   Crie um arquivo `.env` no diretório raiz:
    ```bash
    cp .env.testing .env
    ```
    
-   Update the `.env` file with your configuration:
+   Atualize o arquivo `.env` com sua configuração:
    ```env
    DATABASE_URL="postgres://postgres:postgres@localhost:5432/partiufit?sslmode=disable"
    PORT=8080
    APP_ENV=development
    ```
 
-3. **Database Setup**
+3. **Configuração do Banco de Dados**
    
-   **Option A: Using Docker (Recommended)**
+   **Opção A: Usando Docker (Recomendado)**
    ```bash
-   # Start PostgreSQL with Docker Compose
+   # Inicie o PostgreSQL com Docker Compose
    docker-compose up db -d
    ```
    
-   **Option B: Local PostgreSQL**
+   **Opção B: PostgreSQL Local**
    ```bash
-   # Create database manually
+   # Crie o banco de dados manualmente
    createdb partiufit
    ```
 
-## 🚀 Quick Start
+## 🚀 Início Rápido
 
-### Using Docker (Recommended)
+### Usando Docker (Recomendado)
 ```bash
-# Start all services (database + application)
+# Inicie todos os serviços (banco + aplicação)
 docker-compose up
 
-# Or run in background
+# Ou execute em segundo plano
 docker-compose up -d
 ```
 
-### Local Development
+### Desenvolvimento Local
 ```bash
-# Install dependencies
+# Instale as dependências
 go mod download
 
-# Run database migrations (automatically handled by app)
-# Start the application with hot reload
+# Execute as migrações do banco (automaticamente pela aplicação)
+# Inicie a aplicação com hot reload
 make run
 
-# Or build and run manually
+# Ou compile e execute manualmente
 make build
 ./bin/partiuFit
 ```
 
-The API will be available at `http://localhost:8080`
+A API estará disponível em `http://localhost:8080`
 
-## 📋 Available Make Commands
+## 📋 Comandos Make Disponíveis
 
 ```bash
-make help      # Show available commands
-make format    # Format Go code using gofmt and goimports
-make lint      # Run golangci-lint
-make run       # Run with hot reload (uses Air)
-make build     # Build the application binary
-make test      # Run all tests
-make clean     # Clean build artifacts
+make help      # Mostrar comandos disponíveis
+make format    # Formatar código Go usando gofmt e goimports
+make lint      # Executar golangci-lint
+make run       # Executar com hot reload (usa Air)
+make build     # Compilar o binário da aplicação
+make test      # Executar todos os testes
+make clean     # Limpar artefatos de build
 ```
 
-## 🔌 API Endpoints
+## 🔌 Endpoints da API
 
-### Health Check
-- `GET /health` - Check application health status
+### Verificação de Integridade
+- `GET /health` - Verificar status de integridade da aplicação
 
-### Authentication
-- `POST /tokens` - Generate authentication token (login)
+### Autenticação
+- `POST /tokens` - Gerar token de autenticação (login)
 
-### User Management
-- `POST /users` - Register a new user
-- `PUT /users` - Update user profile (requires authentication)
+### Gerenciamento de Usuários
+- `POST /users` - Registrar novo usuário
+- `PUT /users` - Atualizar perfil do usuário (requer autenticação)
 
-### Workout Management (Authentication Required)
-- `GET /workouts` - Get all user workouts
-- `POST /workouts` - Create a new workout
-- `GET /workouts/{id}` - Get specific workout by ID
-- `PUT /workouts/{id}` - Update specific workout
-- `DELETE /workouts/{id}` - Delete specific workout
+### Gerenciamento de Treinos (Autenticação Obrigatória)
+- `GET /workouts` - Obter todos os treinos do usuário
+- `POST /workouts` - Criar novo treino
+- `GET /workouts/{id}` - Obter treino específico por ID
+- `PUT /workouts/{id}` - Atualizar treino específico
+- `DELETE /workouts/{id}` - Deletar treino específico
 
-## 🗄️ Database Schema
+## 🗄️ Esquema do Banco de Dados
 
-The application uses PostgreSQL with the following main entities:
+A aplicação usa PostgreSQL com as seguintes entidades principais:
 
-- **Users**: User accounts and profiles
-- **Workouts**: Workout sessions
-- **Workout_Entries**: Individual exercises within workouts
-- **Tokens**: Authentication tokens
+- **Users**: Contas e perfis de usuários
+- **Workouts**: Sessões de treino
+- **Workout_Entries**: Exercícios individuais dentro dos treinos
+- **Tokens**: Tokens de autenticação
 
-Migrations are automatically applied on application startup.
+As migrações são aplicadas automaticamente na inicialização da aplicação.
 
-## 🧪 Testing
+## 🧪 Testes
 
-Run the test suite:
+Execute a suíte de testes:
 ```bash
-# Run all tests
+# Execute todos os testes
 make test
 
-# Run tests with verbose output
+# Execute testes com saída detalhada
 go test -v ./...
 
-# Run specific package tests
+# Execute testes de pacote específico
 go test -v ./internal/store
 ```
 
-## 🔧 Development Workflow
+## 🔧 Fluxo de Desenvolvimento
 
-1. **Start the development environment**
+1. **Inicie o ambiente de desenvolvimento**
    ```bash
-   docker-compose up db -d  # Start database
-   make run                 # Start app with hot reload
+   docker-compose up db -d  # Inicie o banco de dados
+   make run                 # Inicie a aplicação com hot reload
    ```
 
-2. **Code formatting and linting**
+2. **Formatação e linting do código**
    ```bash
-   make format  # Format code
-   make lint    # Run linter
+   make format  # Formate o código
+   make lint    # Execute o linter
    ```
 
-3. **Running tests**
+3. **Executando testes**
    ```bash
    make test
    ```
 
-## 📊 Key Dependencies
+## 📊 Dependências Principais
 
-- **Web Framework**: [Chi](https://github.com/go-chi/chi) - Lightweight HTTP router
-- **Database**: [pgx](https://github.com/jackc/pgx) - PostgreSQL driver
-- **Migrations**: [Goose](https://github.com/pressly/goose) - Database migration tool
-- **Validation**: [validator](https://github.com/go-playground/validator) - Struct validation
-- **Logging**: [Zap](https://github.com/uber-go/zap) - Structured logging
-- **Environment**: [godotenv](https://github.com/joho/godotenv) - Environment variable loading
-- **Passwords**: [bcrypt](https://golang.org/x/crypto/bcrypt) - Password hashing
-- **Testing**: [Testify](https://github.com/stretchr/testify) - Testing toolkit
+- **Framework Web**: [Chi](https://github.com/go-chi/chi) - Roteador HTTP leve
+- **Banco de Dados**: [pgx](https://github.com/jackc/pgx) - Driver PostgreSQL
+- **Migrações**: [Goose](https://github.com/pressly/goose) - Ferramenta de migração de banco
+- **Validação**: [validator](https://github.com/go-playground/validator) - Validação de structs
+- **Logging**: [Zap](https://github.com/uber-go/zap) - Logging estruturado
+- **Ambiente**: [godotenv](https://github.com/joho/godotenv) - Carregamento de variáveis de ambiente
+- **Senhas**: [bcrypt](https://golang.org/x/crypto/bcrypt) - Hash de senhas
+- **Testes**: [Testify](https://github.com/stretchr/testify) - Kit de ferramentas para testes
 
-## 🌐 Environment Variables
+## 🌐 Variáveis de Ambiente
 
-| Variable | Description | Default | Required |
+| Variável | Descrição | Padrão | Obrigatório |
 |----------|-------------|---------|----------|
-| `DATABASE_URL` | PostgreSQL connection string | - | ✅ |
-| `PORT` | Server port | `8080` | ✅ |
-| `APP_ENV` | Application environment | `development` | ❌ |
+| `DATABASE_URL` | String de conexão PostgreSQL | - | ✅ |
+| `PORT` | Porta do servidor | `8080` | ✅ |
+| `APP_ENV` | Ambiente da aplicação | `development` | ❌ |
 
-## 🚀 Production Deployment
+## 🚀 Deploy de Produção
 
-1. **Build the application**
+1. **Compile a aplicação**
    ```bash
    make build
    ```
 
-2. **Set environment variables**
+2. **Defina as variáveis de ambiente**
    ```bash
    export APP_ENV=production
-   export DATABASE_URL="your-production-db-url"
+   export DATABASE_URL="sua-url-do-banco-producao"
    export PORT=8080
    ```
 
-3. **Run the binary**
+3. **Execute o binário**
    ```bash
    ./bin/partiuFit
    ```
 
-## 🤝 Contributing
+## 🤝 Contribuindo
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Run tests (`make test`)
-5. Format code (`make format`)
-6. Lint code (`make lint`)
-7. Commit your changes (`git commit -m 'Add amazing feature'`)
-8. Push to the branch (`git push origin feature/amazing-feature`)
-9. Open a Pull Request
+1. Faça um fork do repositório
+2. Crie uma branch para sua feature (`git checkout -b feature/funcionalidade-incrivel`)
+3. Faça suas alterações
+4. Execute os testes (`make test`)
+5. Formate o código (`make format`)
+6. Execute o linter (`make lint`)
+7. Commit suas alterações (`git commit -m 'Add funcionalidade incrível'`)
+8. Envie para a branch (`git push origin feature/funcionalidade-incrivel`)
+9. Abra um Pull Request
 
-## 📝 Project Status
+## 📝 Status do Projeto
 
-This is an active fitness tracking API project built with modern Go practices. The application follows clean architecture principles with clear separation of concerns.
+Este é um projeto ativo de API de acompanhamento fitness construído com práticas modernas de Go. A aplicação segue princípios de arquitetura limpa com clara separação de responsabilidades.
 
-## 🔒 Security
+## 🔒 Segurança
 
-- Passwords are hashed using bcrypt
-- Token-based authentication
-- Input validation on all endpoints
-- SQL injection prevention through parameterized queries
+- Senhas são hash usando bcrypt
+- Autenticação baseada em token
+- Validação de entrada em todos os endpoints
+- Prevenção de injeção SQL através de consultas parametrizadas
 
-## 📞 Support
+## 📞 Suporte
 
-If you encounter any issues or have questions, please open an issue on the repository.
+Se você encontrar algum problema ou tiver dúvidas, por favor abra uma issue no repositório.
 
 ---
 
-**Made with ❤️ using Go**
+**Feito com ❤️ usando Go**
