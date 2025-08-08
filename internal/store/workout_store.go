@@ -69,7 +69,7 @@ func (s *PostgresWorkoutStore) GetAllWorkouts(userID int) ([]Workout, error) {
 		_ = rows.Close()
 	}()
 
-	var workouts []Workout
+	var workouts = make([]Workout, 0)
 
 	for rows.Next() {
 		workout := &Workout{}

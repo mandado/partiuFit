@@ -1,6 +1,6 @@
 # PartiuFit 💪
 
-pUma API de acompanhamento fitness baseada em Go que permite aos usuários gerenciar seus treinos, rastrear exercícios e manter sua jornada fitness. Construída com arquitetura limpa usando Go, PostgreSQL e roteador Chi.
+Uma API de acompanhamento fitness baseada em Go que permite aos usuários gerenciar seus treinos, rastrear exercícios e manter sua jornada fitness. Construída com arquitetura limpa usando Go, PostgreSQL e roteador Chi.
 
 ## 🚀 Funcionalidades
 
