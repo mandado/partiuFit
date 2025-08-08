@@ -41,11 +41,11 @@ func MustReadJSON(w http.ResponseWriter, r *http.Request, data interface{}) {
 func ReadIDParam(r *http.Request) (int, error) {
 	idParam := chi.URLParam(r, "id")
 	if idParam == "" {
-		return 0, internalErrors.InvalidIDParam
+		return 0, internalErrors.ErrInvalidIDParam
 	}
 	id, err := strconv.ParseInt(idParam, 10, 64)
 	if err != nil {
-		return 0, internalErrors.InvalidIDType
+		return 0, internalErrors.ErrInvalidIDType
 	}
 
 	return int(id), nil

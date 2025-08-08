@@ -13,7 +13,7 @@ func TestWorkoutStore(t *testing.T) {
 	db := utils.Must(testingUtils.SetupTestDB())
 	utils.MustIfError(testingUtils.SeedDB(db))
 	user, _ := testingUtils.CreateToken(db, "johndoe")
-	defer testingUtils.TeardownTestDB(db)
+	defer func() { _ = testingUtils.TeardownTestDB(db) }()
 
 	workutStore := NewPostgresWorkoutStore(db)
 

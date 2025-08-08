@@ -65,7 +65,9 @@ func (s *PostgresWorkoutStore) GetAllWorkouts(userID int) ([]Workout, error) {
 		return nil, err
 	}
 
-	defer rows.Close()
+	defer func() {
+		_ = rows.Close()
+	}()
 
 	var workouts []Workout
 
@@ -129,7 +131,9 @@ func (s *PostgresWorkoutStore) GetWorkoutById(id int) (*Workout, error) {
 		return nil, err
 	}
 
-	defer rows.Close()
+	defer func() {
+		_ = rows.Close()
+	}()
 
 	for rows.Next() {
 		entry := WorkoutEntry{}
@@ -165,7 +169,9 @@ func (s *PostgresWorkoutStore) CreateWorkout(workout *Workout) (*Workout, error)
 		return nil, err
 	}
 
-	defer tx.Rollback()
+	defer func() {
+		_ = tx.Rollback()
+	}()
 
 	query := `
 			insert into workouts (title, description, duration_minutes, calories_burned, user_id)
@@ -224,7 +230,9 @@ func (s *PostgresWorkoutStore) UpdateWorkout(id int, workout *Workout) (*Workout
 		return nil, err
 	}
 
-	defer tx.Rollback()
+	defer func() {
+		_ = tx.Rollback()
+	}()
 
 	query := `
 		update workouts
@@ -252,7 +260,7 @@ func (s *PostgresWorkoutStore) UpdateWorkout(id int, workout *Workout) (*Workout
 	}
 
 	if affectedRows == 0 {
-		return nil, internalErrors.NoRows
+		return nil, internalErrors.ErrNoRows
 	}
 
 	_, err = tx.Exec("delete from workout_entries where workout_id = $1", id)
@@ -308,7 +316,7 @@ func (s *PostgresWorkoutStore) DeleteWorkout(id int) error {
 	}
 
 	if rowsAffected == 0 {
-		return internalErrors.NoRows
+		return internalErrors.ErrNoRows
 	}
 
 	return err

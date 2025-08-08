@@ -138,7 +138,7 @@ func checkOwnerOfWorkout(wh *WorkoutsHandlers, w http.ResponseWriter, user *stor
 
 	if !isWorkoutOwner {
 		wh.Logger.Error("user does not own this workout")
-		return internalErrors.Forbidden
+		return internalErrors.ErrForbidden
 	}
 
 	return nil

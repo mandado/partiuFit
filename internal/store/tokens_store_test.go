@@ -14,7 +14,7 @@ import (
 func TestTokensStore(t *testing.T) {
 	db := utils.Must(testingUtils.SetupTestDB())
 	utils.MustIfError(testingUtils.SeedDB(db))
-	defer testingUtils.TeardownTestDB(db)
+	defer func() { _ = testingUtils.TeardownTestDB(db) }()
 
 	tokensStore := NewPostgresTokensStore(db)
 

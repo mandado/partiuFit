@@ -26,7 +26,13 @@ func main() {
 		panic(err)
 	}
 
-	defer application.DB.Close()
+	defer func() {
+		err := application.DB.Close()
+
+		if err != nil {
+			application.Logger.Fatalf("Failed to close database connection: %v", err)
+		}
+	}()
 
 	application.Logger.Info("Application started")
 
@@ -40,6 +46,6 @@ func main() {
 
 	application.Logger.Info(fmt.Sprintf("Server started at port %d", port))
 	if err := server.ListenAndServe(); err != nil {
-		application.Logger.Fatal("Server failed to start", zap.Error(err))
+		application.Logger.Fatalf("Server failed to start: %v", err)
 	}
 }

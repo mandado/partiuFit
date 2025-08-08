@@ -113,7 +113,7 @@ func (s *UserPostgresStore) UpdateUser(id int, user *User) error {
 	}
 
 	if affectedRows == 0 {
-		return internalErrors.NoRows
+		return internalErrors.ErrNoRows
 	}
 
 	return nil

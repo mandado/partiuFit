@@ -41,8 +41,13 @@ func createUsers(db *sql.DB) error {
 		password := &valueObjects.Password{
 			PlainText: user.Password,
 		}
-		password.HashPassword()
-		_, err := db.Exec("INSERT INTO users (name, username, email, password) VALUES ($1, $2, $3, $4)", user.Name, user.Username, user.Email, password.GetHash())
+		err := password.HashPassword()
+
+		if err != nil {
+			return err
+		}
+
+		_, err = db.Exec("INSERT INTO users (name, username, email, password) VALUES ($1, $2, $3, $4)", user.Name, user.Username, user.Email, password.GetHash())
 
 		if err != nil {
 			return err

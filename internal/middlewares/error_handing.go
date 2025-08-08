@@ -42,31 +42,31 @@ func (em *ErrorHandlerMiddleware) Handle(next http.Handler) http.Handler {
 					middleware.PrintPrettyStack(rvr)
 				}
 
-				if errors.Is(err, internalErrors.NoRows) {
+				if errors.Is(err, internalErrors.ErrNoRows) {
 					em.Logger.Error(err)
 					utils.MustWriteJSON(w, http.StatusNotFound, utils.Envelope{"error": "not found"})
 					return
 				}
 
-				if errors.Is(err, internalErrors.InvalidCredentials) {
+				if errors.Is(err, internalErrors.ErrInvalidCredentials) {
 					em.Logger.Error(err)
 					utils.MustWriteJSON(w, http.StatusUnauthorized, utils.Envelope{"error": "invalid credentials1"})
 					return
 				}
 
-				if errors.Is(err, internalErrors.Forbidden) {
+				if errors.Is(err, internalErrors.ErrForbidden) {
 					em.Logger.Error(err)
 					utils.MustWriteJSON(w, http.StatusForbidden, utils.Envelope{"error": err.Error()})
 					return
 				}
 
-				if errors.Is(err, internalErrors.InvalidIDParam) {
+				if errors.Is(err, internalErrors.ErrInvalidIDParam) {
 					em.Logger.Error(err)
 					utils.MustWriteJSON(w, http.StatusBadRequest, utils.Envelope{"error": err.Error()})
 					return
 				}
 
-				if errors.Is(err, internalErrors.InvalidIDType) {
+				if errors.Is(err, internalErrors.ErrInvalidIDType) {
 					em.Logger.Error(err)
 					utils.MustWriteJSON(w, http.StatusBadRequest, utils.Envelope{"error": err.Error()})
 					return

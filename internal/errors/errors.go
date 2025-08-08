@@ -8,12 +8,12 @@ import (
 )
 
 var (
-	NoRows               = sql.ErrNoRows
-	ErrUserAlreadyExists = errors.New("já existe um usuário com esse username ou email")
-	InvalidCredentials   = errors.New("invalid credentials")
-	Forbidden            = errors.New("você não tem permissao para realizar essa operação")
-	InvalidIDParam       = errors.New("parametro de id invalido")
-	InvalidIDType        = errors.New("tipo de id invalido")
+	ErrNoRows             = sql.ErrNoRows
+	ErrUserAlreadyExists  = errors.New("já existe um usuário com esse username ou email")
+	ErrInvalidCredentials = errors.New("invalid credentials")
+	ErrForbidden          = errors.New("você não tem permissao para realizar essa operação")
+	ErrInvalidIDParam     = errors.New("parametro de id invalido")
+	ErrInvalidIDType      = errors.New("tipo de id invalido")
 )
 
 func isPgDuplicateUserError(err error) bool {

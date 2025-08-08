@@ -15,7 +15,7 @@ import (
 func TestUserStore(t *testing.T) {
 	db := utils.Must(testingUtils.SetupTestDB())
 	utils.MustIfError(testingUtils.SeedDB(db))
-	defer testingUtils.TeardownTestDB(db)
+	defer func() { _ = testingUtils.TeardownTestDB(db) }()
 
 	userStore := NewPostgresUserStore(db)
 
@@ -90,7 +90,7 @@ func TestUserStore(t *testing.T) {
 		user, err := userStore.GetUserByUsername("nonexistent")
 
 		assert.Error(t, err)
-		assert.True(t, errors.Is(err, internalErrors.NoRows))
+		assert.True(t, errors.Is(err, internalErrors.ErrNoRows))
 		assert.Nil(t, user)
 	})
 
@@ -134,7 +134,7 @@ func TestUserStore(t *testing.T) {
 
 		err = userStore.UpdateUser(99999, user)
 		assert.Error(t, err)
-		assert.True(t, errors.Is(err, internalErrors.NoRows))
+		assert.True(t, errors.Is(err, internalErrors.ErrNoRows))
 	})
 
 	t.Run("GetUserFromToken with valid token", func(t *testing.T) {
@@ -152,7 +152,7 @@ func TestUserStore(t *testing.T) {
 		user, err := userStore.GetUserFromToken("authentication", "invalidtoken")
 
 		assert.Error(t, err)
-		assert.True(t, errors.Is(err, internalErrors.NoRows))
+		assert.True(t, errors.Is(err, internalErrors.ErrNoRows))
 		assert.Nil(t, user)
 	})
 
@@ -162,7 +162,7 @@ func TestUserStore(t *testing.T) {
 		user, err := userStore.GetUserFromToken("wrongscope", token.Plaintext)
 
 		assert.Error(t, err)
-		assert.True(t, errors.Is(err, internalErrors.NoRows))
+		assert.True(t, errors.Is(err, internalErrors.ErrNoRows))
 		assert.Nil(t, user)
 	})
 

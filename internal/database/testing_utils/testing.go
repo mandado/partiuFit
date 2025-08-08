@@ -5,13 +5,14 @@ import (
 	"fmt"
 	"os"
 	"partiuFit/internal/database"
+	"partiuFit/internal/utils"
 	"partiuFit/migrations"
 
 	"github.com/joho/godotenv"
 )
 
 func SetupTestDB() (*sql.DB, error) {
-	godotenv.Load("../../.env.testing")
+	utils.MustIfError(godotenv.Load("../../.env.testing"))
 	db, err := database.Open(os.Getenv("DATABASE_URL"))
 
 	if err != nil {
