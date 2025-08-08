@@ -15,6 +15,7 @@ import (
 type Middlewares struct {
 	UserMiddleware         *middlewares.UserMiddleware
 	ErrorHandlerMiddleware *middlewares.ErrorHandlerMiddleware
+	SecurityMiddleware     *middlewares.SecurityMiddleware
 }
 
 type Application struct {
@@ -45,6 +46,7 @@ func NewApplication(logger *zap.SugaredLogger) (*Application, error) {
 	appHandlers := handlers.NewHandlers(appStore, logger)
 	userMiddleware := middlewares.NewUserMiddleware(appStore, logger)
 	errorHandlerMiddleware := middlewares.NewErrorHandlerMiddleware(logger)
+	securityMiddleware := middlewares.NewSecurityMiddleware(logger)
 
 	app := &Application{
 		Logger:   logger,
@@ -53,6 +55,7 @@ func NewApplication(logger *zap.SugaredLogger) (*Application, error) {
 		Middlewares: Middlewares{
 			UserMiddleware:         userMiddleware,
 			ErrorHandlerMiddleware: errorHandlerMiddleware,
+			SecurityMiddleware:     securityMiddleware,
 		},
 	}
 
